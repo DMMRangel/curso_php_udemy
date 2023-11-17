@@ -1,24 +1,31 @@
 <?php
-
-  include_once("helpers/url.php");
-
+  include_once("templates/header.php");
 ?>
+  <main>
+    <div id="title-container">
+      <h1>Blog Hora de Codar</h1>
+      <p>O seu blog de programação</p>
+    </div>
+    <div id="posts-container">
+      <?php foreach($posts as $post): ?>
+        <div class="post-box">
+          <img src="<?= $BASE_URL?>/img/<?= $post['img']?>" alt="<?= $post['title']?>"/>
+          <h2 class="post-title">
+            <a href="<?= $BASE_URL?>post.php?id=<?= $post['id']?>"><?= $post['title']?></a>
+          </h2>
+          <p class="post-description"><?= $post['description']?></p>
+          <div class="tags-container">
+          <?php foreach($post["tags"] as $tag): ?>
+            <a href="#"><?= $tag ?></a>
+          <?php endforeach; ?>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </main>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog Codar</title>
-  <!-- ESTILOS DO PROJETO -->
-  <link rel="stylesheet" href="<?= $BASE_URL ?>/css/style.css">
-  <!-- GOOGLE FONTS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <h1>Olá Mundo!</h1>
+<?php
+  include_once("templates/footer.php");
+?>
 </body>
 </html>
